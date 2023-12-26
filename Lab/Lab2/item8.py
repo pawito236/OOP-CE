@@ -26,10 +26,13 @@ def day_of_year(day, month, year):
 
     return day_of_years
 
+def day_in_year(year):
+    return day_of_year(31, 12, year)
+
 def date_diff(dmy1, dmy2):
     dd1, mm1, yy1 = [int(i) for i in dmy1.split("-")]
     dd2, mm2, yy2 = [int(i) for i in dmy2.split("-")]
-    return day_of_year(dd2, mm2, yy2) - day_of_year(dd1, mm1, yy1) + sum([day_of_year(31, 12, y) for y in range(yy1, yy2)]) + 1
+    return day_of_year(dd2, mm2, yy2) - day_of_year(dd1, mm1, yy1) + sum([day_in_year(y) for y in range(yy1, yy2)]) + 1
 
 dmy1, dmy2 = input("DD-MM-YY DD-MM-YY: ").split()
 print(date_diff(dmy1, dmy2))
